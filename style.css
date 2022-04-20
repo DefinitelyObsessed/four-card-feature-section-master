@@ -1,0 +1,229 @@
+/**
+    Layout
+ 1. Google Fonts
+ 2. Root
+ 3. Reset
+ 4. Utilities
+    4.1. Display stuff
+    4.2. Font weight
+    4.3. Text colors
+ 5. Main
+    5.1. Header
+    5.2. Cards
+    5.3. Individual Card
+
+*/
+
+
+/* Google Fonts - (200, 400, 600) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+
+/***************
+    Root
+****************/
+:root {
+    --clr-red: hsl(0, 78%, 62%);
+    --clr-cyan: hsl(180, 62%, 55%);
+    --clr-orange: hsl(34, 97%, 64%);
+    --clr-blue: hsl(212, 86%, 64%);
+
+    --clr-card-1: var(--clr-cyan);
+    --clr-card-2: var(--clr-red);
+    --clr-card-3: var(--clr-orange);
+    --clr-card-4: var(--clr-blue);
+
+    --clr-neutral-200: hsl(0, 0%, 98%);
+    --clr-neutral-400: hsl(229, 6%, 66%);
+    --clr-neutral-700: hsl(234, 12%, 34%);
+
+
+    --ff-body: 'Poppins', sans-serif;
+
+    --fs-400: 0.9375rem; /* 15px */
+
+    /* the reason why I am setting '--fw-400' as 200, 
+    because 200 is main font-weight for this design.
+    As for me, '--fw-400' is the main font-weight */
+    --fw-400: 200;
+    --fw-600: 400;
+    --fw-800: 600;
+}
+
+/***************
+    Reset
+****************/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    line-height: 1;
+}
+
+h1, h2, h3, 
+p {
+    margin: 0;
+}
+
+p {
+    max-width: 50ch;
+}
+
+/***************
+    Utilities
+****************/
+.container {
+    width: min(100% - 2rem, 68rem);
+    margin-inline: auto;
+    padding-block: 2rem;
+}
+
+/* display stuff */
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.flow > *:where(:not(:first-child)) {
+    margin-top: var(--flow-space, 1.5rem);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* font weight */
+.fw-400 {
+    font-weight: var(--fw-400);
+}
+
+.fw-600 {
+    font-weight: var(--fw-600);
+}
+
+.fw-800 {
+    font-weight: var(--fw-800);
+}
+
+/* text colors */
+.text-white {
+    color: var(--clr-neutral-200);
+}
+
+.text-light {
+    color: var(--clr-neutral-400);
+}
+
+.text-dark {
+    color: var(--clr-neutral-700);
+}
+
+/***************
+    Main
+****************/
+body {
+    display: grid;
+    place-items: center;
+
+    font-family: var(--ff-body);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-400);
+
+    background-color: var(--clr-neutral-200);
+}
+
+/* header */
+.header__title {
+    line-height: 1.4;
+}
+
+.header__subtitle {
+    margin-inline: auto;
+}
+
+/* cards */
+.cards {
+    --gap: 1.5rem;
+    margin-top: 3rem;
+    grid-template-areas: 
+        'card-1'
+        'card-2'
+        'card-3'
+        'card-4';
+}
+
+/* 900px */
+@media only screen and (min-width: 56.25rem) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas: 
+            '...... card-2 ......'
+            'card-1 card-2 card-4'
+            'card-1 card-3 card-4'
+            '...... card-3 ......';
+    }
+}
+
+@media only screen and (max-width: 56.25rem) {
+    .card {
+        width: min(100%, 20rem);
+    }
+}
+
+/* individual card */
+.card {
+    margin-inline: auto;
+    padding: 1.5rem;
+    
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+}
+
+.card:nth-child(1) {
+    grid-area: card-1;
+    border-top: 5px solid var(--clr-card-1);
+}
+
+.card:nth-child(2) {
+    grid-area: card-2;
+    border-top: 5px solid var(--clr-card-2);
+}
+
+.card:nth-child(3) {
+    grid-area: card-3;
+    border-top: 5px solid var(--clr-card-3);
+}
+
+.card:nth-child(4) {
+    grid-area: card-4;
+    border-top: 5px solid var(--clr-card-4);
+}
+
+.card__img {
+    float: right;
+    margin-top: 2rem;
+}
